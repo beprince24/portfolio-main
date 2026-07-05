@@ -1,0 +1,42 @@
+<div class="glass p-5 rounded-2xl">
+  <h3 class="font-semibold text-lg">Project Title</h3>
+  <p class="text-slate-300 mt-2 text-sm">
+    Project description here.
+  </p>
+
+  <div class="mt-4 flex flex-wrap gap-3">
+    <a
+      href="https://github.com/your-repo-link"
+      target="_blank"
+      class="inline-flex items-center px-4 py-2 text-xs font-medium rounded-full
+             border border-slate-500/60 text-slate-100
+             hover:bg-slate-100 hover:text-slate-900
+             transition-colors duration-200"
+    >
+      View GitHub Repo
+    </a>
+
+    <a
+      href="https://your-demo-site.com"
+      target="_blank"
+      class="inline-flex items-center px-4 py-2 text-xs font-medium rounded-full
+             bg-indigo-500 text-white
+             hover:bg-indigo-400
+             transition-colors duration-200"
+    >
+      Demo Website
+    </a>
+
+    <a
+      href="/path/to/your/docs.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center px-4 py-2 text-xs font-medium rounded-full
+             border border-slate-500/60 text-slate-100
+             hover:bg-slate-100 hover:text-slate-900
+             transition-colors duration-200"
+    >
+      Open or Download Docs (PDF)
+    </a>
+  </div>
+</div>
