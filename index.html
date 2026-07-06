@@ -1111,16 +1111,51 @@
         }
         /* Certificates grid: 3 columns on desktop, responsive to 2/1 columns */
         .cert-grid {
-            margin-top: 40px;
+            margin-top: 20px;
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 20px;
+        }
+        .cert-category-switcher {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .cert-category-btn {
+            border: 1px solid rgba(148,163,184,0.24);
+            background: rgba(15,23,42,0.56);
+            color: var(--text-soft);
+            padding: 12px 16px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cert-category-btn:hover {
+            border-color: rgba(34,211,238,0.4);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .cert-category-btn.active {
+            background: linear-gradient(135deg, rgba(34,211,238,0.16), rgba(99,102,241,0.2));
+            border-color: rgba(34,211,238,0.4);
+            color: white;
+            box-shadow: 0 0 20px rgba(34,211,238,0.15);
+        }
+        .cert-category-panel {
+            display: none;
+        }
+        .cert-category-panel.active {
+            display: block;
         }
         @media (max-width: 900px) {
             .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 480px) {
             .cert-grid { grid-template-columns: 1fr; }
+            .cert-category-btn { width: 100%; justify-content: center; text-align: center; }
         }
 
         /* ─── FADE INS ─── */
@@ -1987,7 +2022,6 @@
                         <div>
                             <p style="font-weight:600;font-size:0.95rem;margin-bottom:6px;">cPanel Professional Certification</p>
                             <p style="font-size:0.82rem;color:var(--text-muted);">cPanel University</p>
-                            <p style="font-size:0.78rem;color:var(--cyan);margin-top:8px;">Status: Completed</p>
                         </div>
                     </div>
                     <div class="card-glass fade-in" style="padding:24px;display:flex;gap:14px;align-items:flex-start;">
@@ -1995,7 +2029,6 @@
                         <div>
                             <p style="font-weight:600;font-size:0.95rem;margin-bottom:6px;">cPanel &amp; WHM Sales Professional</p>
                             <p style="font-size:0.82rem;color:var(--text-muted);">cPanel University</p>
-                            <p style="font-size:0.78rem;color:var(--cyan);margin-top:8px;">Status: Completed</p>
                         </div>
                     </div>
                     <div class="card-glass fade-in" style="padding:24px;display:flex;gap:14px;align-items:flex-start;">
@@ -2003,35 +2036,12 @@
                         <div>
                             <p style="font-weight:600;font-size:0.95rem;margin-bottom:6px;">GitHub Tutorial for Beginners</p>
                             <p style="font-size:0.82rem;color:var(--text-muted);">Version control basics &amp; workflows</p>
-                            <p style="font-size:0.78rem;color:var(--cyan);margin-top:8px;">Status: Completed</p>
-                        </div>
-                    </div>
-                    <div class="card-glass fade-in" style="padding:24px;display:flex;gap:14px;align-items:flex-start;">
-                        <span style="font-size:1.5rem;flex-shrink:0;">🏅</span>
-                        <div>
-                            <p style="font-weight:600;font-size:0.95rem;margin-bottom:6px;">SIC Course — C Programming</p>
-                            <p style="font-size:0.82rem;color:var(--text-muted);">Basics &amp; Intermediate</p>
-                            <p style="font-size:0.78rem;color:var(--cyan);margin-top:8px;">Status: Completed</p>
-                        </div>
-                    </div>
-                    <div class="card-glass fade-in" style="padding:24px;display:flex;gap:14px;align-items:flex-start;">
-                        <span style="font-size:1.5rem;flex-shrink:0;">📖</span>
-                        <div>
-                            <p style="font-weight:600;font-size:0.95rem;margin-bottom:6px;">Web Development Fundamentals</p>
-                            <p style="font-size:0.82rem;color:var(--text-muted);">HTML, CSS, basic JavaScript &amp; PHP</p>
-                            <p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px;">Status: Ongoing self-learning</p>
-                        </div>
-                    </div>
-                    <div class="card-glass fade-in" style="padding:24px;display:flex;gap:14px;align-items:flex-start;">
-                        <span style="font-size:1.5rem;flex-shrink:0;">🌐</span>
-                        <div>
-                            <p style="font-weight:600;font-size:0.95rem;margin-bottom:6px;">Hosting &amp; DNS Concepts</p>
-                            <p style="font-size:0.82rem;color:var(--text-muted);">Learned practically via daily work at Seekahost</p>
-                            <p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px;">Status: Continuous improvement</p>
                         </div>
                     </div>
                 </div>
-                <p style="margin-top:20px;font-size:0.8rem;color:var(--text-muted);">More certifications will be added as I progress through my learning path and M.Sc. CS.</p>
+                <div style="margin-top:24px;display:flex;justify-content:center;">
+                    <button class="btn btn-cyan" onclick="navigate('certifications')" style="font-size:0.95rem;padding:13px 28px;">View Certifications ↗</button>
+                </div>
             </div>
         </section>
 
@@ -2189,8 +2199,9 @@
             </div>
         </section>
 
+
         <!-- ─── TESTIMONIALS ─── -->
-        <section aria-labelledby="test-heading">
+        <!-- <section aria-labelledby="test-heading"> 
             <div class="container">
                 <div class="text-center" style="margin-bottom:56px">
                     <span class="section-eyebrow">Testimonials</span>
@@ -2232,8 +2243,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
+
+        
         <!-- ─── FINAL CTA ─── -->
         <div class="cta-section" aria-label="Call to action">
             <div class="container">
@@ -2622,67 +2635,115 @@
                         <p class="section-desc" style="margin-top:24px;">Certified, concise, and ready for action — built to impress technical hiring teams.</p>
                     </div>
                 </div>
-                <div class="cert-grid">
-                    <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,211,238,0.18);">
-                        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                            <span style="font-size:1.8rem;">🏅</span>
-                            <div>
-                                <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">cPanel Professional Certification</p>
-                                <p style="font-size:0.82rem;color:var(--text-muted);">cPanel University</p>
+                <div class="cert-category-switcher" role="tablist" aria-label="Certificate categories">
+                    <button class="cert-category-btn active" type="button" data-cert-category="professional" aria-pressed="true">🏆 Professional Certifications</button>
+                    <button class="cert-category-btn" type="button" data-cert-category="college" aria-pressed="false">🎓 College Certificates</button>
+                    <button class="cert-category-btn" type="button" data-cert-category="workshops" aria-pressed="false">📚 Workshops &amp; Events</button>
+                </div>
+
+                <div class="cert-category-panel active" id="panel-professional">
+                    <div class="cert-grid">
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,211,238,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">🏅</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">cPanel Professional Certification</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">cPanel University</p>
+                                </div>
                             </div>
-                        </div>
-                        <p style="color:var(--text-soft);line-height:1.75;">Validates expertise in cPanel operations, Linux hosting support, site migrations, security, email configuration, and customer support best practices.</p>
-                        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;">
-                            <span class="tag">Hosting Ops</span>
-                            <span class="tag">DNS & SSL</span>
-                            <span class="tag">Client Support</span>
-                        </div>
-                    </article>
-                    <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(168,85,247,0.18);">
-                        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                            <span style="font-size:1.8rem;">🏅</span>
-                            <div>
-                                <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">cPanel &amp; WHM Sales Professional</p>
-                                <p style="font-size:0.82rem;color:var(--text-muted);">cPanel University</p>
+                            <p style="color:var(--text-soft);line-height:1.75;">Professional certification for hosting operations, DNS, SSL, and support workflows.</p>
+                        </article>
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(168,85,247,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">🏅</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">cPanel &amp; WHM Sales Professional</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">cPanel University</p>
+                                </div>
                             </div>
-                        </div>
-                        <p style="color:var(--text-soft);line-height:1.75;">Highlights consultative sales skills for hosting solutions, product knowledge, SSL upsells, and building trusted customer recommendations.</p>
-                        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;">
-                            <span class="tag">Sales Support</span>
-                            <span class="tag">Product Knowledge</span>
-                            <span class="tag">Client Trust</span>
-                        </div>
-                    </article>
-                    <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,197,94,0.18);">
-                        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                            <span style="font-size:1.8rem;">🏅</span>
-                            <div>
-                                <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">GitHub Tutorial for Beginners</p>
-                                <p style="font-size:0.82rem;color:var(--text-muted);">Version control basics &amp; workflows</p>
+                            <p style="color:var(--text-soft);line-height:1.75;">Professional certification focused on hosting solutions, client guidance, and product knowledge.</p>
+                        </article>
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,197,94,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">🏅</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">GitHub Tutorial for Beginners</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">Version control basics &amp; workflows</p>
+                                </div>
                             </div>
-                        </div>
-                        <p style="color:var(--text-soft);line-height:1.75;">Demonstrates mastery of repository setup, branching, commits, merges, collaboration, and basic GitHub workflow used in modern development teams.</p>
-                        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;">
-                            <span class="tag">Git</span>
-                            <span class="tag">Collaboration</span>
-                            <span class="tag">Workflow</span>
-                        </div>
-                    </article>
-                    <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(251,191,36,0.18);">
-                        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                            <span style="font-size:1.8rem;">🏅</span>
-                            <div>
-                                <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">SIC Course — C Programming</p>
-                                <p style="font-size:0.82rem;color:var(--text-muted);">Basics &amp; Intermediate</p>
+                            <p style="color:var(--text-soft);line-height:1.75;">Certification covering GitHub workflows, repositories, and team collaboration basics.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="cert-category-panel" id="panel-college">
+                    <div class="cert-grid">
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,211,238,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">🎓</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">B.Sc Computer Science</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">Kaamadhenu Arts &amp; Science College</p>
+                                </div>
                             </div>
-                        </div>
-                        <p style="color:var(--text-soft);line-height:1.75;">Reinforces logical thinking, procedural programming, debugging skills, and a strong foundation in code structure for technical troubleshooting.</p>
-                        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;">
-                            <span class="tag">Problem Solving</span>
-                            <span class="tag">Debugging</span>
-                            <span class="tag">Code Logic</span>
-                        </div>
-                    </article>
+                            <p style="color:var(--text-soft);line-height:1.75;">Academic certificate for completed undergraduate study in computer science.</p>
+                        </article>
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(168,85,247,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">🏅</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">First Prize in Photography</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">KASC Sparx 2024</p>
+                                </div>
+                            </div>
+                            <p style="color:var(--text-soft);line-height:1.75;">College-level recognition for photography excellence and creative presentation.</p>
+                        </article>
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,197,94,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">🧠</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">First Prize in Quiz &amp; Debugging</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">Ignoriz Event</p>
+                                </div>
+                            </div>
+                            <p style="color:var(--text-soft);line-height:1.75;">Recognition for strong analytical thinking and debugging ability in a competitive event.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="cert-category-panel" id="panel-workshops">
+                    <div class="cert-grid">
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,211,238,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">📚</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">Workshop on Web Development</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">Hands-on learning session</p>
+                                </div>
+                            </div>
+                            <p style="color:var(--text-soft);line-height:1.75;">Certificate for attending a practical workshop focused on web development basics.</p>
+                        </article>
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(168,85,247,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">📚</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">Workshop on Hosting &amp; DNS</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">Technical learning event</p>
+                                </div>
+                            </div>
+                            <p style="color:var(--text-soft);line-height:1.75;">Certificate for a workshop centered on hosting fundamentals and DNS troubleshooting.</p>
+                        </article>
+                        <article class="card-glass fade-in" style="padding:24px;border:1px solid rgba(34,197,94,0.18);">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                                <span style="font-size:1.8rem;">📚</span>
+                                <div>
+                                    <p style="font-weight:700;font-size:1rem;margin-bottom:4px;">Workshop on UI/UX Basics</p>
+                                    <p style="font-size:0.82rem;color:var(--text-muted);">Design learning event</p>
+                                </div>
+                            </div>
+                            <p style="color:var(--text-soft);line-height:1.75;">Certificate for participation in a workshop on layout, design thinking, and user experience.</p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2713,6 +2774,36 @@
             </div>
         </footer>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.cert-category-btn');
+            const panels = document.querySelectorAll('.cert-category-panel');
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const target = this.getAttribute('data-cert-category');
+
+                    buttons.forEach(function (btn) {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-pressed', 'false');
+                    });
+
+                    panels.forEach(function (panel) {
+                        panel.classList.remove('active');
+                    });
+
+                    this.classList.add('active');
+                    this.setAttribute('aria-pressed', 'true');
+
+                    const activePanel = document.getElementById('panel-' + target);
+                    if (activePanel) {
+                        activePanel.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 
     <!-- ═══════════════════════════════════ PAGE: PROJECTS ═══════════════════════════════════ -->
     <main id="page-projects" class="page" aria-label="Projects">
